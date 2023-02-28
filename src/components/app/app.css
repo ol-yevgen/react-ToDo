@@ -1,0 +1,15 @@
+.todo-container {
+    padding: 20px;
+    margin: 0 auto;
+
+    max-width: 1000px;
+}
+
+.todo-wrapper {
+    padding: 40px 0;
+}
+
+.done {
+    text-decoration: line-through;
+    color: #0b75efa2;
+}

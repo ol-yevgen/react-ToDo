@@ -1,0 +1,126 @@
+
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+
+    border-radius: 15px;
+    background-color: rgb(217, 217, 217);
+
+    transition: all .3s ease-in;
+}
+
+.task:hover {
+    background: var(--white-color);
+}
+
+.task-add {
+    width: 100%;
+    margin: 40px 0;
+}
+
+.task-add--input {
+    width: 100%;
+    padding: 5px 0;
+    margin-left: 5px;
+}
+
+.todo-list--item {
+    margin-bottom: 15px;
+}
+
+.task-progres {
+    background: var(--white-color);
+}
+
+.checked {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-checkbox {
+    position: absolute;
+    top: -3px;
+    left: -4px;
+
+    width: 1.5em;
+    height: 1.5em;
+
+    opacity: 0;
+}
+
+.custom-checkbox+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+
+.custom-checkbox+label::before {
+    content: '';
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 2px solid #adb5bd;
+    border-radius: 0.40em;
+    margin-right: 0.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+
+    transition: all .3s ease-in;
+}
+
+.custom-checkbox:checked+label::before {
+    border-color: var(--blue-color);
+    background-color: var(--blue-color);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+.todo-list--item---action {
+    display: flex;
+}
+
+.action-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 32px;
+    height: 30px;
+
+    border: none;
+    border-radius: 50%;
+    transition: all .4s ease-in;
+    transform: scale(1);
+}
+
+.action-button img {
+    width: 23px;
+    height: 23px;
+}
+
+.task:hover .action-button {
+    transform: scale(1);
+}
+
+.action-button:hover {
+    cursor: pointer;
+
+    background: #d9d9d9;
+}
+
+.task-add--button {
+    width: 42px;
+    height: 36px;
+}
+
+.delete {
+    margin-left: 5px;
+}

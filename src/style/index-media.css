@@ -1,0 +1,75 @@
+@media (max-width: 383px) {
+    .greetings {
+        font-size: 1.15em;
+    }
+
+    .name {
+        width: 90px;
+        font-size: 1.15em;
+    }
+}
+
+@media (max-width: 476px) {
+    .filter {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        height: 150px;
+    }
+
+    .filter-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 845px) {
+    .task-add--button {
+        background: none;
+    }
+}
+
+@media (min-width: 845px) {
+    .name {
+        width: 50%;
+    }
+
+    .search-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 300px;
+        height: 250px;
+    }
+
+    .filter {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        height: 100%;
+    }
+
+    .filter-btn {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+
+    .todo-wrapper {
+        display: flex;
+    }
+
+    .todo {
+        width: 100%;
+        padding-left: 20px;
+    }
+
+    .task-add {
+        margin-top: 0;
+    }
+
+    .action-button {
+        transform: scale(0);
+    }
+}
