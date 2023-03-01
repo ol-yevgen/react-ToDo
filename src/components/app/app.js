@@ -14,8 +14,8 @@ class App extends Component {
         this.state =
         {
             data: [
-                { task: "Task 1", done: false, id: 1 },
-                { task: "Task 2", done: false, id: 2 }
+                // { task: "Task 1", done: false, id: 1 },
+                // { task: "Task 2", done: false, id: 2 }
             ],
             filter: 'all',
             term: '',
@@ -24,13 +24,21 @@ class App extends Component {
             date: new Date().toDateString().replace(/\s/, ', '),
             hours: +(new Date().toLocaleTimeString().slice(0, 2))
         }
-        this.maxId = 3
     }
 
     onUpdateTime = () => {
         const { hours } = this.state;
 
         window.onload = () => {
+            if (localStorage.getItem('tasks') !== null) {
+                this.setState(() => {
+                    const newArr = JSON.parse(localStorage.getItem('tasks'))
+                    return {
+                        data: newArr
+                    }
+                })
+            }
+
             if (hours < 12) {
                 this.setState(() => {
                     return { time: "morning" }
@@ -51,17 +59,20 @@ class App extends Component {
     greetingsName = (e) => {
         e.preventDefault();
 
+        const userName = e.target.value;
+
+        localStorage.setItem('userName', JSON.stringify(userName))
+
         this.setState({
-            userName: e.target.value,
+            userName: userName,
         })
     }
-
 
     addNewTask = (task) => {
         const newTask = {
             task,
             done: false,
-            id: this.maxId++
+            id: Math.floor(Math.random() * 1000)
         }
 
         this.setState(({ data }) => {
@@ -70,6 +81,10 @@ class App extends Component {
                 data: newArr
             }
         })
+
+        localStorage.removeItem('tasks')
+        localStorage.setItem(`tasks`, JSON.stringify([...this.state.data, newTask]));
+
     }
 
     deleteTask = (id) => {
@@ -78,6 +93,10 @@ class App extends Component {
                 data: data.filter(item => item.id !== id)
             }
         })
+        setTimeout(() => {
+            localStorage.removeItem('tasks')
+            localStorage.setItem(`tasks`, JSON.stringify([...this.state.data]));
+        }, 300)
     }
 
     onChangeTask = (changedTask, task) => {
@@ -88,9 +107,14 @@ class App extends Component {
                         return { ...item, task: changedTask }
                     }
                     return item
+                    
                 })
             }
         })
+        setTimeout(() => {
+            localStorage.removeItem('tasks')
+            localStorage.setItem(`tasks`, JSON.stringify([...this.state.data]));
+        }, 300)
     }
 
     onChecked = (id, prop) => {
@@ -104,6 +128,10 @@ class App extends Component {
                 })
             }
         })
+        setTimeout(() => {
+            localStorage.removeItem('tasks')
+            localStorage.setItem(`tasks`, JSON.stringify([...this.state.data]));
+        }, 300)
     }
 
     onFilterSelect = (filter) => {
@@ -135,6 +163,13 @@ class App extends Component {
         })
     }
 
+    setLocal() {
+        setTimeout(() => {
+            localStorage.removeItem('tasks')
+            localStorage.setItem(`tasks`, JSON.stringify([...this.state.data]));
+        }, 300)
+    }
+
     render() {
         const { data, filter, term, userName, time, date, hours } = this.state;
         const tasks = this.state.data.length;
@@ -161,6 +196,7 @@ class App extends Component {
                             all={tasks}
                             done={tasksDone}
                             current={tasksCurrent}
+                            filter={filter}
                             onFilterSelect={this.onFilterSelect}
                         />
                     </section>

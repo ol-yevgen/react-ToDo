@@ -4,7 +4,13 @@ import logo from '../../assets/clipboard-list-svgrepo-com.svg'
 import './app-header.css';
 
 const AppHeader = (props) => {
-    const { userName, date, time, greetingsName, onUpdateTime } = props;
+    let { userName, date, time, greetingsName, onUpdateTime } = props;
+    
+    const storageName = localStorage.getItem('userName') || '';
+
+    if (storageName !== '') {
+        userName = JSON.parse(storageName)
+    }
 
     return (
         <header className='header'>
@@ -13,7 +19,8 @@ const AppHeader = (props) => {
             </div>
             <div className='title-text'>
                 <h1 className='greetings'
-                    onLoad={onUpdateTime()}> Good {time},
+                    onLoad={onUpdateTime()}
+                > Good {time},
                     <input type="text"
                         placeholder="Name here"
                         className='name'

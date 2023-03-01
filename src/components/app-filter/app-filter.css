@@ -43,3 +43,13 @@
     color: var(--white-color);
     background: var(--blue-color);
 }
+
+.filter-btn--active {
+    color: var(--white-color);
+    background-color: var(--blue-color);
+}
+
+.filter-btn.filter-btn--active .filter-btn--info {
+    color: var(--blue-color);
+    background-color: var(--white-color);
+}

@@ -10,9 +10,11 @@ const AppFilter = (props) => {
     ]
 
     const buttons = buttonData.map(({ name, label, info }) => {
+        const active = props.filter === name;
+        const clazz = active ? 'filter-btn--active' : '';
         return (
             <button
-                className="filter-btn"
+                className={`filter-btn ${clazz}`}
                 onClick={() => { props.onFilterSelect(name) }}
                 key={name}
             >
